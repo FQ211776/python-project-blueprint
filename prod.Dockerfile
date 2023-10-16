@@ -1,4 +1,4 @@
-FROM debian:buster-slim AS builder
+FROM debian:bookworm-slim AS builder
 RUN apt-get update && \
     apt-get install --no-install-suggests --no-install-recommends --yes python3-venv gcc libpython3-dev && \
     python3 -m venv /venv && \
@@ -14,7 +14,7 @@ COPY . /app
 WORKDIR /app
 RUN /venv/bin/pytest
 
-FROM gcr.io/distroless/python3-debian10 AS runner
+FROM gcr.io/distroless/python3-debian11 AS runner
 COPY --from=tester /venv /venv
 COPY --from=tester /app /app
 

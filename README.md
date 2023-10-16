@@ -25,7 +25,7 @@ You can find more information about this project/repository and how to use it in
 To use this repository as starter for your project you can run `configure_project.sh` script, which sets up all variables and file names. This way you can avoid configuring and renaming things yourself:
 
 ```shell
-./configure_project.sh MODULE="coolproject" REGISTRY="docker.pkg.github.com/martinheinz/repo-name"
+./configure_project.sh MODULE="coolproject" REGISTRY="ghcr.io/baycollege/repo-name"
 ```
 
 ## Running
@@ -42,7 +42,7 @@ Development image:
 ~ $ make build-dev
 ~ $ docker images --filter "label=name=blueprint"
 REPOSITORY                                                             TAG                 IMAGE ID            CREATED             SIZE
-docker.pkg.github.com/martinheinz/python-project-blueprint/blueprint   3492a40-dirty       acf8d09acce4        28 seconds ago      967MB
+ghcr.io/baycollege/python-project-blueprint/blueprint   3492a40-dirty       acf8d09acce4        28 seconds ago      967MB
 ~ $ docker run acf8d09acce4
 Hello World...
 ```
@@ -52,7 +52,7 @@ Production (Distroless) image:
 ~ $ make build-prod VERSION=0.0.5
 ~ $ docker images --filter "label=version=0.0.5"
 REPOSITORY                                                             TAG                 IMAGE ID            CREATED             SIZE
-docker.pkg.github.com/martinheinz/python-project-blueprint/blueprint   0.0.5               65e6690d9edd        5 seconds ago       86.1MB
+ghcr.io/baycollege/python-project-blueprint/blueprint   0.0.5               65e6690d9edd        5 seconds ago       86.1MB
 ~ $ docker run 65e6690d9edd
 Hello World...
 ```
@@ -68,7 +68,7 @@ Test are ran every time you build _dev_ or _prod_ image. You can also run tests 
 ## Pushing to GitHub Package Registry
 
 ```console
-~ $ docker login docker.pkg.github.com --username MartinHeinz
+~ $ docker login ghcr.io --username jared-paquette
 Password: ...
 ...
 Login Succeeded

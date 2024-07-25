@@ -20,7 +20,7 @@ COPY --from=tester /app /app
 
 WORKDIR /app
 
-ENTRYPOINT ["/venv/bin/python3", "-m", "blueprint"] # Use Python 3 from venv
+ENTRYPOINT ["/venv/bin/python3", "-m", "blueprint"]
 USER 1001
 
 LABEL name={NAME}

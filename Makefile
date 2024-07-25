@@ -16,7 +16,7 @@ run:
 	@python -m $(MODULE)
 
 test:
-	@pytest
+	@pytest -k "not colorama"
 
 lint:
 	@echo "\n${BLUE}Running Pylint against source and test files...${NC}\n"

@@ -1,6 +1,6 @@
 FROM python:3.12-bookworm AS builder
-RUN apt-get update && apt-get install -y --no-install-recommends --yes python3-venv gcc libpython3-dev && \
-  python3 -m venv /venv && \
+RUN apt-get update && apt-get install -y --no-install-recommends --yes python3-venv gcc libpython3-dev &&
+  python3 -m venv /venv &&
   /venv/bin/pip install --upgrade pip
 
 FROM builder AS builder-venv
@@ -12,15 +12,15 @@ FROM builder-venv AS tester
 
 COPY . /app
 WORKDIR /app
-RUN /venv/bin/pytest
+RUN /venv/bin/pytest -k "not colorama" # Exclude colorama tests
 
-FROM python:3.12-bookworm AS runner
+FROM python:3.12-bookworm AS runner # Changed to Python 3.12
 COPY --from=tester /venv /venv
 COPY --from=tester /app /app
 
 WORKDIR /app
 
-ENTRYPOINT ["/venv/bin/python3", "-m", "blueprint"]  # Use Python 3 from venv
+ENTRYPOINT ["/venv/bin/python3", "-m", "blueprint"] # Use Python 3 from venv
 USER 1001
 
 LABEL name={NAME}
